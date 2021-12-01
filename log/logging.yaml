@@ -14,18 +14,37 @@ handlers:
     formatter: simple
     stream: ext://sys.stdout
 
-  file_handler:
+  server_handler:
     class: logging.FileHandler
     level: DEBUG
     formatter: normal
+    filename: server.log
+
+  cron_handler:
+    class: logging.FileHandler
+    level: INFO
+    formatter: normal
+    filename: cron.log
+
+  default_handler:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: normal
+    filename: default.log
+
 
 #root:not found logger,use root
 root:
   level: INFO
-  handlers: [console,file_handler]
+  handlers: [console,default_handler]
 
 loggers:
   server:
     level: DEBUG
-    handlers: [file_handler,console]
+    handlers: [server_handler,console]
+    propagate: no
+
+  cron:
+    level: DEBUG
+    handlers: [cron_handler]
     propagate: no
