@@ -27,14 +27,15 @@ def setup_logger(log_root_path, config_file):
 
 
 
-def init():
+def init(*loggers):
     APP_DIR = os.path.dirname(os.path.abspath(__file__))
     log_root_path = os.path.join(APP_DIR, 'logs')
     config_file = os.path.join(APP_DIR,'logging.yaml')
     setup_logger(log_root_path,config_file)
-    return logging.getLogger("server"),logging.getLogger("cron")
 
-server_logger, cron_logger = init()
+    return [logging.getLogger(logger_name) for logger_name in loggers]
+
+server_logger, cron_logger = init("server","cron")
 if __name__ == "__main__":
 
     cron_del_logger = logging.getLogger("cron.delete")
