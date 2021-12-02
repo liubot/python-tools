@@ -15,22 +15,34 @@ handlers:
     stream: ext://sys.stdout
 
   server_handler:
-    class: logging.FileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: DEBUG
     formatter: normal
-    filename: server.log
+    filename: ../logs/server.log
+    interval: 1
+    backupCount: 15
+    encoding: utf8
+    when: midnight
 
   cron_handler:
-    class: logging.FileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: INFO
     formatter: normal
-    filename: cron.log
+    filename: ../logs/cron.log
+    interval: 1
+    backupCount: 15
+    encoding: utf8
+    when: midnight
 
   default_handler:
-    class: logging.FileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: DEBUG
     formatter: normal
-    filename: default.log
+    filename: ../logs/default.log
+    interval: 1
+    backupCount: 15
+    encoding: utf8
+    when: midnight
 
 
 #root:not found logger,use root
