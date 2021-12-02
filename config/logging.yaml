@@ -18,7 +18,7 @@ handlers:
     class: logging.handlers.TimedRotatingFileHandler
     level: DEBUG
     formatter: normal
-    filename: ../logs/server.log
+    filename: server.log
     interval: 1
     backupCount: 15
     encoding: utf8
@@ -28,7 +28,7 @@ handlers:
     class: logging.handlers.TimedRotatingFileHandler
     level: INFO
     formatter: normal
-    filename: ../logs/cron.log
+    filename: cron.log
     interval: 1
     backupCount: 15
     encoding: utf8
@@ -38,7 +38,7 @@ handlers:
     class: logging.handlers.TimedRotatingFileHandler
     level: DEBUG
     formatter: normal
-    filename: ../logs/default.log
+    filename: default.log
     interval: 1
     backupCount: 15
     encoding: utf8

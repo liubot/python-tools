@@ -9,12 +9,18 @@ def setup_logger(log_root_path, config_file):
         log_root_path:日志目录名称
         config_file:配置文件yaml路径
     '''
-
+    print (log_root_path)
     if not os.path.exists(log_root_path):
         os.makedirs(log_root_path)
 
     with open(config_file,'r') as fh:
         logging_config = yaml.safe_load(fh)
+
+    #设置handler的filepath，在yaml里面设置有相对路径问题
+    for handler in logging_config['handlers']:
+        if logging_config['handlers'][handler].get("filename"):
+            log_name = logging_config['handlers'][handler]['filename']
+            logging_config['handlers'][handler]['filename'] = os.path.join(log_root_path,log_name)
 
     logging.config.dictConfig(logging_config)
 
